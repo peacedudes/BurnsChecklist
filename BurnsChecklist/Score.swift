@@ -8,46 +8,58 @@
 import Foundation
 
 struct Score: Codable {
-    let date: Date
-    let value: Int
+    let dateString: String
+    let score: Int
+    let suicidal: Int
 
-    init(date: Date? = nil, _ value: Int) {
-        self.date = date ?? Date()
-        self.value = value
+    var date: Date { Self.dateFormatter.date(from: self.dateString) ?? Date.distantPast }
+
+    static var dateFormatter: DateFormatter {
+        let format = DateFormatter()
+        format.dateFormat = "yyyyMMdd"
+        return format
+    }
+    
+    init(date: Date? = nil, _ score: Int, _ suicidalScore: Int) {
+        self.dateString = Self.dateFormatter.string(from: date ?? Date())
+        self.score = score
+        // TODO: nothing is done with this, but it would be nice to notice it changing and offer specific encouragements.
+        self.suicidal = suicidalScore
     }
 }
 
 extension Score: Identifiable {
-    var id: Date { date }
+    var id: String { dateString }
 }
 
-extension Score {
-    var dayString: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        return formatter.string(from: date)
+extension Score: Equatable {
+    fileprivate init(day: String, _ score: Int, _ suicidalScore: Int) {
+        self.dateString = day
+        self.score = score
+        self.suicidal = suicidalScore
+    }
+    static var sampleData: [Score] {[
+        Score(day: "20230710", 65, 0),
+        Score(day: "20230711", 73, 0),
+        Score(day: "20230712", 82, 0),
+        Score(day: "20230713", 55, 0),
+        Score(day: "20230714", 66, 0),
+        Score(day: "20230715", 26, 0),
+        Score(day: "20230716", 22, 0)]
     }
 }
 
-extension Score {
-    fileprivate init(day: String, value: Int) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        self.date = formatter.date(from: day) ?? Date.distantPast
-        self.value = value
+extension Array where Element == Score {
+    func index(of score: Score) -> Int? {
+        self.indices.first(where: { self[$0].dateString == score.dateString })
     }
-    static var sampleData: [Score] {
-        [
-            Score(day: "20230710", value: 65),
-            Score(day: "20230711", value: 73),
-            Score(day: "20230712", value: 82),
-            Score(day: "20230713", value: 55),
-            Score(day: "20230714", value: 66),
-            Score(day: "20230715", value: 26),
-            Score(day: "20230716", value: 22)
-        ]
+    mutating func update(_ new: Score) {
+        if let replacement = self.index(of: new ) {
+            self[replacement] = new
+        } else {
+            self.append(new)
+            self.sort {$0.dateString < $1.dateString}
+        }
     }
 }
 

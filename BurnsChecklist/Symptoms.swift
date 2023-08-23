@@ -75,5 +75,5 @@ let encouragements = [
     "It’s hard to see this right now, but it’s only temporary… Things will change. You won’t feel this way forever. Look to that day.",
     "There are ways to get through this difficult time.",
     "Depression is a real health issue that can be treated. You may be helped by talking to a doctor or counselor about how you’re feeling.",
-    "It seems like you’re really struggling. Talking to a doctor or counselor about what you’re going through may be very helpful to you.",
+    "It seems like you’re really struggling. It may be very helpful to you to talk to a doctor or counselor about what you’re going through.",
 ]

@@ -25,29 +25,30 @@ struct HistoricalPlot: View {
             endPoint: .bottom)
   
         VStack {
-            GroupBox ( "Depression History") {
+            GroupBox ( "Depression Score History") {
                 Chart {
                     ForEach(points) { score in
                         LineMark(
-                            x: .value("Day", score.date/*, unit: .day*/),
-                            y: .value("Score", score.value)
+                            x: .value("Day", score.date, unit: .day),
+                            y: .value("Score", score.score)
                         )
                         .interpolationMethod(.catmullRom)
                         .foregroundStyle(plotColor)
                         
                         AreaMark(
-                            x: .value("Day", score.date/*, unit: .day*/),
-                            y: .value("Score", score.value)
+                            x: .value("Day", score.date, unit: .day),
+                            y: .value("Score", score.score)
                         )
                         .interpolationMethod(.catmullRom)
                         .foregroundStyle(curGradient)
                         .lineStyle(StrokeStyle(lineWidth: 3))
                         .accessibilityLabel(score.dayString)
-                        .accessibilityValue("Stress score \(score.value)")
+                        .accessibilityValue("Stress score \(score.score)")
                     }
                 }
+                .chartYScale(domain: 0...100)
                 .chartYAxis {
-                    AxisMarks(values: [0, 6, 11, 26, 51, 76]) {
+                    AxisMarks(values: [6, 11, 26, 51, 76]) {
                         let value = $0.as (Int.self)!
                         AxisValueLabel {
                             Text(value.depressionLabel).foregroundColor(value.depressionColor)
@@ -55,7 +56,7 @@ struct HistoricalPlot: View {
                         AxisGridLine()
                     }
                 }
-                .background(Color(hue: 0.10, saturation: 0.10, brightness: 0.98))
+                .background(Color.secondary.opacity(0.2))
                 .cornerRadius(20)
             }
         }
@@ -68,13 +69,23 @@ struct HistoricalPlot: View {
         .padding()
 }
 
+extension Score {
+    var dayString: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+}
+
 extension Int {
     var depressionColor: Color {
-        self <= 5 ? Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)) :
-        self <= 10 ? Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)) :
-        self <= 25 ? Color(#colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)) :
-        self <= 50 ? Color(#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)) :
-        self <= 75 ? Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1)) : Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1))
+        self <= 5 ? Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)) :
+        self <= 10 ? Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)) :
+        self <= 25 ? Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)) :
+        self <= 50 ? Color(#colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)) :
+        self <= 75 ? Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1)) : Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
     }
 }
 

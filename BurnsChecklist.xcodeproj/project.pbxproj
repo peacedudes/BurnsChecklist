@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E57191C2A95E2E9003EC5B6 /* InfoSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E57191B2A95E2E9003EC5B6 /* InfoSheetView.swift */; };
 		7E7B91DB2A946E7300BE84A3 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B91DA2A946E7300BE84A3 /* Score.swift */; };
 		7E95BFBD2A944A1F00ABE72C /* HistoricalPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E95BFBC2A944A1F00ABE72C /* HistoricalPlot.swift */; };
 		7ED0C11C2A93E412007F681E /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0C11B2A93E412007F681E /* Symptoms.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E57191B2A95E2E9003EC5B6 /* InfoSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSheetView.swift; sourceTree = "<group>"; };
 		7E7B91DA2A946E7300BE84A3 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		7E95BFBC2A944A1F00ABE72C /* HistoricalPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalPlot.swift; sourceTree = "<group>"; };
 		7ED0C11B2A93E412007F681E /* Symptoms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				7EE283792A93E2E8003E7614 /* BurnsChecklistApp.swift */,
 				7EE2837B2A93E2E8003E7614 /* BurnsChecklistView.swift */,
 				7E95BFBC2A944A1F00ABE72C /* HistoricalPlot.swift */,
+				7E57191B2A95E2E9003EC5B6 /* InfoSheetView.swift */,
 				7E7B91DA2A946E7300BE84A3 /* Score.swift */,
 				7ED0C11B2A93E412007F681E /* Symptoms.swift */,
 				7EE2837D2A93E2EB003E7614 /* Assets.xcassets */,
@@ -272,6 +275,7 @@
 				7ED0C11C2A93E412007F681E /* Symptoms.swift in Sources */,
 				7EE2837C2A93E2E8003E7614 /* BurnsChecklistView.swift in Sources */,
 				7EE2837A2A93E2E8003E7614 /* BurnsChecklistApp.swift in Sources */,
+				7E57191C2A95E2E9003EC5B6 /* InfoSheetView.swift in Sources */,
 				7E7B91DB2A946E7300BE84A3 /* Score.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
