@@ -1,6 +1,6 @@
 #  Burn's Depression Checklist
 
-This is a simple single view iOS application that tallies and graphs the results of answering checklist of symptoms of depression over time, based on a list created by David D. Burns M.D.
+This is a simple single view iOS application that tallies and graphs the results of evaluating a checklist of symptoms of depression over time, based on a list created by David D. Burns M.D.
 
 The checklist may contain copyrighted material by Dr. Burns, and should not be shared or published without first obtaining specific permission.  It is included here as an example for personal use.
 
