@@ -6,4 +6,4 @@ The checklist may contain copyrighted material by Dr. Burns, and should not be s
 
 The app should compile and run on MacOS Sonoma 14 or iOS 16 without.  It will produce a historical chart of scores over time after three datat points have been collected (on separate dates).
 
-[Screen capture](Screenshot.png)
+![Screen capture](Screenshot.png)
