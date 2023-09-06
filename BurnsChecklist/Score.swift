@@ -28,11 +28,11 @@ struct Score: Codable {
     }
 }
 
-extension Score: Identifiable {
+extension Score: Identifiable, Equatable {
     var id: String { dateString }
 }
 
-extension Score: Equatable {
+extension Score {
     fileprivate init(day: String, _ score: Int, _ suicidalScore: Int) {
         self.dateString = day
         self.score = score

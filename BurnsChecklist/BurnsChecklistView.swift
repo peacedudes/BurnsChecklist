@@ -136,20 +136,23 @@ struct BurnsChecklistView: View {
                                 .opacity(depression.min ... depression.max ~= score ? 0.3 : 0))
                         }
                     }
-                    .frame(width: 250, height: 6 * 25)
+                    .frame(width: 300, height: 6 * 25)
                     .padding(.horizontal, 44)
                     
                     VStack {
                         let newScore = Score(score, suicidalScore)
                         let scoreIndex = scoreHistory.index(of: newScore)
-                        let isUpdate = scoreIndex != nil && scoreHistory[scoreIndex!] != newScore
+                        let isNewDay = scoreIndex != nil && scoreHistory[scoreIndex!].dateString != newScore.dateString
+                        let isUpdate = scoreIndex != nil &&
+                            scoreHistory[scoreIndex!] != newScore && !isNewDay
+                            
                         let save = isUpdate ? "Update" : "Save"
                         if scoreHistory.count > 2 {
                             HistoricalPlot(points: scoreHistory)
                                 .padding()
                                 .frame(height: 300)
                         }
-                        if !scoreIsSaved || isUpdate {
+                        if !scoreIsSaved || isUpdate || isNewDay {
                             Text("Would you like to \(save.lowercased()) today's self-evaluation score \(isUpdate ? "to" : "of") \(score)?")
                                 .padding(.top)
                             Button(save) {
