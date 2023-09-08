@@ -63,10 +63,12 @@ struct HistoricalPlot: View {
     }
 }
 
-#Preview {
-    HistoricalPlot(points: Score.sampleData)
-        .frame(height: 300)
-        .padding()
+struct HistoricalPlot_Previews: PreviewProvider {
+    static var previews: some View {
+        HistoricalPlot(points: Score.sampleData)
+            .frame(height: 300)
+            .padding()
+    }
 }
 
 extension Score {

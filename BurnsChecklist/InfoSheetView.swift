@@ -36,6 +36,8 @@ struct InfoSheetView: View {
     }
 }
 
-#Preview {
-    InfoSheetView()
+struct InfoSheetView_Previews: PreviewProvider {
+    static var previews: some View {
+        InfoSheetView()
+    }
 }

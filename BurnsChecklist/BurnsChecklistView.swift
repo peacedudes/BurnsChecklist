@@ -222,6 +222,8 @@ extension Int {
     }
 }
 
-#Preview {
-    BurnsChecklistView()
+struct BurnsCheckListView_Previews: PreviewProvider {
+    static var previews: some View {
+        BurnsChecklistView()
+    }
 }

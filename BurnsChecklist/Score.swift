@@ -24,6 +24,7 @@ struct Score: Codable {
         self.dateString = Self.dateFormatter.string(from: date ?? Date())
         self.score = score
         // TODO: nothing is done with this, but it would be nice to notice it changing and offer specific encouragements.
+        // TODO: Should we be saving the entire survey, and offering specific encouragement for sections that change?
         self.suicidal = suicidalScore
     }
 }
