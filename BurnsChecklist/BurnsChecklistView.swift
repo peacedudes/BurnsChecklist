@@ -15,7 +15,6 @@ struct BurnsChecklistView: View {
     @AppStorage("savedScores") var savedScores = ""
     @State private var scoreHistory = [Score]()
     @State private var isInfoSheetShowing = false
-    @State private var scoreIsSaved = false
 
 #if os(OSX)
     typealias Container = ScrollView
@@ -142,9 +141,8 @@ struct BurnsChecklistView: View {
                     VStack {
                         let newScore = Score(score, suicidalScore)
                         let scoreIndex = scoreHistory.index(of: newScore)
-                        let isNewDay = scoreIndex != nil && scoreHistory[scoreIndex!].dateString != newScore.dateString
-                        let isUpdate = scoreIndex != nil &&
-                            scoreHistory[scoreIndex!] != newScore && !isNewDay
+                        let scoreIsSaved = scoreIndex != nil
+                        let isUpdate = scoreIsSaved && scoreHistory[scoreIndex!] != newScore
                             
                         let save = isUpdate ? "Update" : "Save"
                         if scoreHistory.count > 2 {
@@ -152,17 +150,16 @@ struct BurnsChecklistView: View {
                                 .padding()
                                 .frame(height: 300)
                         }
-                        if !scoreIsSaved || isUpdate || isNewDay {
+                        if !scoreIsSaved || isUpdate {
                             Text("Would you like to \(save.lowercased()) today's self-evaluation score \(isUpdate ? "to" : "of") \(score)?")
                                 .padding(.top)
                             Button(save) {
                                 scoreHistory.update(newScore)
                                 savedScores = scoreHistory.asJSON
-                                scoreIsSaved = true
                             }
                             .padding()
                         } else {
-                            Text("Your score of \(score) has been recorded.")
+                            Text("Your score of \(score) has been saved.")
                         }
                     }
                     Spacer()
